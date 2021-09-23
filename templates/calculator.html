@@ -1,0 +1,29 @@
+{% extends "index.html" %}
+
+{% block content %}
+<h1 class="o_mnie"> Kalkulator walut : </h1>
+
+<ul>
+    <li>Bla blabla </li>
+    <li>Bla blabla</li>
+</ul>
+<h2>Poczynania</h2>
+
+<form action="/calkulator" method="POST" id="">
+
+        <label for="currency">Wybierz walutę :</label>
+        <select name="currency" >
+            {% for item in currency %}
+                <option value="{{ item }}">{{ item }}</option>
+            {% endfor %}
+        </select>
+
+        </select>
+        <label for="amount">Wybierz kwotę do wymiany </label>
+        <input type="number" name="amount" min="1" step=".01">
+        <button type="submit">Przelicz</button>
+</form>
+
+<h3><a href="/">  <-<-<- Return <-<-<-< </a></h3>
+{% endblock %}
+       
