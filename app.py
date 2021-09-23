@@ -45,14 +45,13 @@ def index():
 #================Calculator=====================================================
 
 @app.route('/calculator', methods=["GET", "POST"])
-def calkulator():
+def calculator():
     if request.method == "GET":
         return render_template("calculator.html",currency=currency)
 
     if request.method == "POST":
         print(f'\nprint request ===================>> {request.form}')
         form =request.form #całość form z calculator
-        print(f'wartosć data to :: {form} ')
         code =form.get('code') #skrót waluty
         amount=form.get('amount',type=float)#ilość waluty
 
@@ -67,10 +66,10 @@ def calkulator():
         print(amount)
 
 
-        result = float (aask * amount)#ask nie ma w request form
-        print(result)
-        return  print(f'{amount} {code} będzie kosztować {result} polskich złotych')
-#return render_template("calkulator.html",currency=currency)
+        #result = float (aask * amount)#ask nie ma w request form
+        #print(result)
+        return  print(f'{amount} {code} będzie kosztować ') # {result} polskich złotych')
+#return render_template("calculator.html",currency=currency)
 #===============================================================================
 
 
