@@ -55,20 +55,17 @@ def calculator():
         code =form.get('code') #skrót waluty
         amount=form.get('amount',type=float)#ilość waluty
 
-        for key in rates:
-            if key==code:
-                aask=['ask']
-        #ask = rates.get('ask',type=float) #ask to stawki
+        if rates['code'] == code:
+            ask = rates['ask']#ask to stawki walut
 
-        #aask =rates.ask
-        print (f'wartosc rates aask "{aask}')
-        #print(f'wartosć data to :: {ask} ')
+        print (f'wartosc rates aask "{ask}')
+        print(f'wartosć data to :: {ask} ')
         print(amount)
 
 
-        #result = float (aask * amount)#ask nie ma w request form
-        #print(result)
-        return  print(f'{amount} {code} będzie kosztować ') # {result} polskich złotych')
+        result = float (ask * amount)#ask nie ma w request form
+        print(result)
+        return  print(f'{amount} {code} będzie kosztować {result} polskich złotych')
 #return render_template("calculator.html",currency=currency)
 #===============================================================================
 
