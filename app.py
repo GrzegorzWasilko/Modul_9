@@ -8,23 +8,22 @@ app = Flask (__name__)
 
 response = requests.get("http://api.nbp.pl/api/exchangerates/tables/C?format=json")
 data=response.json()#data to lista całego request jako słownik
-columns=['currency','code','bid','ask']
-
 rates = data[0].get('rates')# wziełem rates/(lista słowników) bo rates to key
-
-print(f'\nzawartość rates to: {rates}\n')#lista słowników kursów walut
+#print(f'\nzawartość rates to: {rates}\n')#lista słowników kursów walut
 #===============================================================================
-def currencys():# currency ==waluty
-    currency = []
-    for i in rates:
-        currency.append(i.get('code'))
-    return sorted(currency)
+def get_codes():
+    codes = []
+    for data in rates:
+        codes.append(data.get('code'))
+    return sorted(codes)
+
+codes = get_codes()#codes to lista ['AUD', 'CAD', 'CHF', 'CZK', ....
+
+#print(f'typ codes to: {type(codes)}')
+print(f'zawartość codes to: {codes}\n')
 #==============================================================================
-currency = currencys()#to chyba do wywalenia
-print(f'typ currency to: {type(currency)}')
-print(f'zawartość currency to: {currency}\n')
-
-#===============================================================================
+columns=['currency','code','bid','ask']
+#==============================================================================
 with open('rates.csv', 'w') as csvfile:
     fieldnames = columns
     writer = csv.DictWriter(csvfile, delimiter=';', fieldnames=fieldnames)
@@ -47,25 +46,18 @@ def index():
 @app.route('/calculator', methods=["GET", "POST"])
 def calculator():
     if request.method == "GET":
-        return render_template("calculator.html",currency=currency)
+        return render_template("calculator.html",rates=rates)
 
     if request.method == "POST":
-        print(f'\nprint request ===================>> {request.form}')
+        print(f'\nprint request ==========>> {request.form}')
         form =request.form #całość form z calculator
-        code =form.get('code') #skrót waluty
+        print(f'\nform to  ==========>> {form}')
+        code =form.get('rates',type=float) #skrót waluty
+        print(f'\ncode to  ==========>> {code}')
         amount=form.get('amount',type=float)#ilość waluty
-
-        if rates['code'] == code:
-            ask = rates['ask']#ask to stawki walut
-
-        print (f'wartosc rates aask "{ask}')
-        print(f'wartosć data to :: {ask} ')
-        print(amount)
-
-
-        result = float (ask * amount)#ask nie ma w request form
-        print(result)
-        return  print(f'{amount} {code} będzie kosztować {result} polskich złotych')
+        print(f'\namount to  ==========>> {amount}')
+        price = code*amount
+        return  print(f'\n{amount} {code} będzie kosztować {price} polskich złotych\n')
 #return render_template("calculator.html",currency=currency)
 #===============================================================================
 

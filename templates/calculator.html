@@ -5,16 +5,15 @@
 
 <ul>
     <li>Bla blabla </li>
-    <li>Bla blabla</li>
 </ul>
 <h2>Poczynania</h2>
 
 <form action="/calculator" method="POST" id="">
 
-        <label for="currency">Wybierz walutę :</label>
-        <select name="currency" >
-            {% for item in currency %}
-                <option value="{{ item }}">{{ item }}</option>
+        <label for="rates">Wybierz walutę :</label>
+        <select name="rates" ><!--jakie to ma znaczenie--> 
+            {% for x in rates %}
+                <option value="{{ x['ask'] }}">{{ x['code'] }}</option>
             {% endfor %}
         </select>
 
