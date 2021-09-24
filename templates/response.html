@@ -2,8 +2,13 @@
 
 {% block content %}
 
-    <h3>To będzie kosztować {{price}} polskich złociszy </h3> 
+    <h3>To będzie kosztować {{ "%.2f"|format(price) }} polskich złociszy </h3> 
 
 
     <h3><a href="/">  <-<-<- Return <-<-<-< </a></h3>
 {% endblock %}
+
+
+<!--     ({{'%0.2f'| format(proc_err|float)}}%)  -->
+<!--  {{ "%.2f"|format(price) }} ze str https://stackoverflow.com/questions/11260155/
+                    how-to-use-float-filter-to-show-just-two-digits-after-decimal-point -->
