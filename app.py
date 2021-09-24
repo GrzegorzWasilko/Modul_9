@@ -62,7 +62,7 @@ def calculator():
         price = code*amount
         print(f'\nprice to  ==========>> {price}')
         # communicat=print (f'% 2 f' % price )
-        print(f'\nTo będzie kosztować {price }polskich złotych\n')
+        print(f'\nTo będzie kosztować {price } polskich złotych\n')
         return render_template("/response.html",price = price )
 #===============================================================================
 
