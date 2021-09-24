@@ -13,14 +13,14 @@
         <label for="rates">Wybierz walutę :</label>
         <select name="rates" ><!--jakie to ma znaczenie--> 
             {% for x in rates %}
-                <option value="{{ x['ask'] }}">{{ x['code'] }}</option>
+                <option value="{{ x['ask']}}">{{ x['code'] }}</option>
             {% endfor %}
         </select>
 
         </select>
         <label for="amount">Wybierz kwotę do wymiany </label>
         <input type="number" name="amount" min="1" step=".01">
-        <button type="submit">Przelicz</button>
+        <button type="submit">Przelicz</button><br>
 </form>
 
 <h3><a href="/">  <-<-<- Return <-<-<-< </a></h3>

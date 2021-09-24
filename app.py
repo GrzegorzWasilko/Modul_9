@@ -52,13 +52,18 @@ def calculator():
         print(f'\nprint request ==========>> {request.form}')
         form =request.form #całość form z calculator
         print(f'\nform to  ==========>> {form}')
+
         code =form.get('rates',type=float) #skrót waluty
-        print(f'\ncode to  ==========>> {code}')
+        
+        print(f'\ncode  linia 55 to  ==========>> {code}')
+        print (type(code))
         amount=form.get('amount',type=float)#ilość waluty
         print(f'\namount to  ==========>> {amount}')
         price = code*amount
-        return  print(f'\n{amount} {code} będzie kosztować {price} polskich złotych\n')
-#return render_template("calculator.html",currency=currency)
+        print(f'\nprice to  ==========>> {price}')
+        # communicat=print (f'% 2 f' % price )
+        print(f'\nTo będzie kosztować {price }polskich złotych\n')
+        return render_template("/response.html",price = price )
 #===============================================================================
 
 
